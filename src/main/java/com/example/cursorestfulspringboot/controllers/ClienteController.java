@@ -1,6 +1,5 @@
 package com.example.cursorestfulspringboot.controllers;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
