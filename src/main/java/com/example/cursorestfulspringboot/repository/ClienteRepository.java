@@ -2,6 +2,8 @@ package com.example.cursorestfulspringboot.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import javax.annotation.PostConstruct;
 import com.example.cursorestfulspringboot.model.Cliente;
 import org.springframework.stereotype.Component;
@@ -44,14 +46,14 @@ public class ClienteRepository {
         return clientes;
     }
     
-    public Cliente getClienteById(int id){
+    public Optional<Cliente> getClienteById(int id){ /* Optional evita uso de "if" e "else"*/
         for (Cliente aux : clientes) {
             if(aux.getId() == id){
-                return aux;
-            }
+                return Optional.of(aux); /*Se houver cliente retorna o mesmo*/
+            } /*Optional retorna true se existe valor e false se não existir*/
         }
-
-        return null;
+        /*Se não houver, retorna uma instância de Optional vazia*/
+        return Optional.empty();
     }
 
 	public Cliente salvar(Cliente cliente) {
@@ -66,22 +68,13 @@ public class ClienteRepository {
 
 	public Cliente update(Cliente cliente) {
         
-        Cliente aux = getClienteById(cliente.getId());
-        
+        Cliente aux = getClienteById(cliente.getId()).get(); /*get() - Pegar Optional apenas do Cliente*/
         if(aux != null){
             aux.setEndereco(cliente.getEndereco());
             aux.setNome(cliente.getNome());
         }
-
         return aux;
-
+        
 	}
 
-	
-
 }
-
-
-
-
-
