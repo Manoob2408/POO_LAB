@@ -12,7 +12,8 @@ public class Pedido {
     private LocalDateTime dataPedido;
     private Cliente cliente;
     private boolean pedidoFechado;
-    private ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>();
+    private ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>(); 
+    /**Lista dos itens do pedido do cliente */
 
     public Pedido() {
 
@@ -78,7 +79,7 @@ public class Pedido {
 
     public boolean addItemPedido(int numero, double preco, String produto, int quantidade) {
         return itens.add(new ItemPedido(numero, preco, produto, quantidade));
-    }
+    } //Adicionar itens ao pedido
 
     @JsonGetter
     public double totalPedido() {

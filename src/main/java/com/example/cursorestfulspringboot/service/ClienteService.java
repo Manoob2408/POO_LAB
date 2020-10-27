@@ -35,7 +35,8 @@ public class ClienteService {
 
 
 	public Cliente update(Cliente cliente) {
-        getClienteById(cliente.getId()); /*entra na função recebendo o numero do Id por meio do get da classe cliente*/
+        getClienteById(cliente.getId()); /*entra na função recebendo o numero do Id por meio 
+        do get da classe cliente*/
         return repositorio.update(cliente); /*Atualiza no repositorio */
     }
 

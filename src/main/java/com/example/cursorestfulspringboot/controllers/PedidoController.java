@@ -18,17 +18,17 @@ public class PedidoController {
 
     
     @Autowired /*Fornece controle sobre onde e como a ligação entre os beans (classes) deve ser realizada.*/
-    private PedidoService servico;
+    private PedidoService servico; 
 
     @GetMapping /*GetMapping só se aplica à métodos e não classes como o @RequestMapping*/
     public List<Pedido> getPedidos() {
         return servico.getAllPedidos(); /*Retornar todos os pedidos da lista*/
     }
 
-    @GetMapping("/{numero}")
+    @GetMapping("/{numero}") //receber pedido por numero
     public ResponseEntity<Pedido> getPedidoByNumero(@PathVariable long numero) {
-        Pedido pedido= servico.getPedidoByNumero(numero);
-        return ResponseEntity.ok(pedido);	
+        Pedido pedido= servico.getPedidoByNumero(numero); //Retornar pedido pelo id
+        return ResponseEntity.ok(pedido);	//Retorna o status http ou o proprio pedido
     }
 
     

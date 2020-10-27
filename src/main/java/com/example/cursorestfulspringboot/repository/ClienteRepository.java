@@ -56,10 +56,10 @@ public class ClienteRepository {
         return Optional.empty();
     }
 
-	public Cliente salvar(Cliente cliente) {
-        cliente.setId(nextId++);
-        clientes.add(cliente);
-        return cliente;
+	public Cliente salvar(Cliente cliente) { 
+        cliente.setId(nextId++); //novo cliente com o próximo Id não utilizado
+        clientes.add(cliente); //Adiciona esse cliente no repositório
+        return cliente; //Retorna esse mesmo cliente
 	}
 
 	public void remove(Cliente cli) {
@@ -68,12 +68,13 @@ public class ClienteRepository {
 
 	public Cliente update(Cliente cliente) {
         
+        //Recebe o Id do cliente a ser atualizado, se houver esse Id retorna o mesmo, se não, taca-lhe 404
         Cliente aux = getClienteById(cliente.getId()).get(); /*get() - Pegar Optional apenas do Cliente*/
-        if(aux != null){
-            aux.setEndereco(cliente.getEndereco());
-            aux.setNome(cliente.getNome());
+        if(aux != null){ //Se não for vazio ou não der 404, atualiza
+            aux.setEndereco(cliente.getEndereco()); //atualiza endereço
+            aux.setNome(cliente.getNome()); //atualiza nome
         }
-        return aux;
+        return aux; //retorna o optional do Cliente
         
 	}
 
